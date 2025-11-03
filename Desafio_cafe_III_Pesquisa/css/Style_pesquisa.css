@@ -1,0 +1,116 @@
+/* =============== GERAL =============== */
+body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #f4f7fa;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container central */
+.container {
+    max-width: 700px;
+    margin: 3rem auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #1a237e;
+}
+
+/* =============== FORMULÁRIO =============== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #2962ff;
+    box-shadow: 0 0 0 3px rgba(41, 98, 255, 0.2);
+    outline: none;
+}
+
+/* Botão de envio */
+button {
+    background: #2962ff;
+    color: #fff;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background: #0039cb;
+    transform: scale(1.02);
+}
+
+/* =============== RESPOSTA DO GEMINI =============== */
+.resposta {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8faff;
+    border-left: 5px solid #2962ff;
+    border-radius: 8px;
+    max-height: 500px;
+    overflow-y: auto;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* Formatação de Markdown */
+.resposta h2, .resposta h3 {
+    color: #1a237e;
+    margin-top: 1rem;
+}
+
+.resposta strong {
+    color: #0d47a1;
+}
+
+.resposta ul {
+    margin-left: 1.5rem;
+}
+
+.resposta li {
+    margin-bottom: 0.5rem;
+}
+
+/* Rótulos dos campos */
+.emoji-label {
+    font-size: 1.2rem;
+    margin-right: 0.25rem;
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
