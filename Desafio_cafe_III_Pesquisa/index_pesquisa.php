@@ -3,35 +3,24 @@
 // index_pesquisa.php
 // ===============================
 
-// Evita warnings de variáveis indefinidas
-$user_api_key = "";
-$user_question = "";
+// Inicializa variáveis
+$api_key = "";
+$pergunta = "";
 $response_message = "";
 $error_message = "";
 
-// Quando o formulário é enviado
+// Processa formulário
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Captura dados do formulário de forma segura
-    $user_api_key = $_POST['user_api_key'] ?? "";
-    $user_question = $_POST['user_question'] ?? "";
+    $api_key = trim($_POST['api_key'] ?? "");
+    $pergunta = trim($_POST['pergunta'] ?? "");
 
-    // Verifica se os campos estão preenchidos
-    if (!empty($user_api_key) && !empty($user_question)) {
-        // Inclui a API que faz a requisição ao modelo
-        require_once "API_pesquisa.php";
-
-        // Chama a função que processa a pergunta
-        try {
-            $response_message = processarPergunta($user_api_key, $user_question);
-        } catch (Exception $e) {
-            $error_message = "Erro ao processar a requisição: " . $e->getMessage();
-        }
+    if (!empty($api_key) && !empty($pergunta)) {
+        require_once "cliente_pesquisa.php";
     } else {
-        $error_message = "Por favor, preencha todos os campos antes de enviar.";
+        $error_message = "⚠️ Por favor, preencha todos os campos antes de enviar.";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -41,14 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
     <div class="container">
-        <h1>💬 Pesquisa com API</h1>
+        <h1>💬 Pesquisa com API Gemini</h1>
 
         <form method="post" action="">
-            <label for="user_api_key"><span class="emoji-label">🔑</span>Chave da API:</label>
-            <input type="text" id="user_api_key" name="user_api_key" value="<?= htmlspecialchars($user_api_key) ?>" placeholder="Insira sua chave da API" required>
+            <label for="api_key"><span class="emoji-label">🔑</span>Chave da API:</label>
+            <input type="password" id="api_key" name="api_key" value="<?= htmlspecialchars($api_key) ?>" placeholder="Insira sua chave da API" required>
 
-            <label for="user_question"><span class="emoji-label">❓</span>Pergunta:</label>
-            <textarea id="user_question" name="user_question" rows="4" placeholder="Digite sua pergunta..." required><?= htmlspecialchars($user_question) ?></textarea>
+            <label for="pergunta"><span class="emoji-label">❓</span>Pergunta:</label>
+            <textarea id="pergunta" name="pergunta" rows="4" placeholder="Digite sua pergunta..." required><?= htmlspecialchars($pergunta) ?></textarea>
 
             <button type="submit">Enviar Pergunta</button>
         </form>
@@ -56,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php if (!empty($response_message)): ?>
             <div class="resposta">
                 <h2>🧠 Resposta:</h2>
-                <p><?= nl2br(htmlspecialchars($response_message)) ?></p>
+                <p><?= $response_message ?></p>
             </div>
         <?php elseif (!empty($error_message)): ?>
             <div class="resposta" style="border-left-color: #ff1744; background: #fff3f3;">

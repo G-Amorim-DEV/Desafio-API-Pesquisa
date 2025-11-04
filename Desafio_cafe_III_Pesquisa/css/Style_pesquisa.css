@@ -38,6 +38,7 @@ label {
 }
 
 input[type="text"],
+input[type="password"],
 textarea {
     width: 100%;
     padding: 0.75rem;
@@ -84,33 +85,24 @@ button:hover {
     white-space: pre-wrap;
 }
 
-/* Formatação de Markdown */
-.resposta h2, .resposta h3 {
-    color: #1a237e;
-    margin-top: 1rem;
+/* Responsividade */
+@media (max-width: 500px) {
+    .container {
+        margin: 1rem;
+        padding: 1rem;
+    }
 }
 
-.resposta strong {
-    color: #0d47a1;
+/* Modo escuro opcional */
+@media (prefers-color-scheme: dark) {
+    body { background: #121212; color: #e0e0e0; }
+    .container { background: #1e1e1e; box-shadow: 0 0 10px rgba(255,255,255,0.1); }
+    input, textarea { background: #2c2c2c; color: #fff; border-color: #555; }
+    button { background: #448aff; }
 }
 
-.resposta ul {
-    margin-left: 1.5rem;
-}
-
-.resposta li {
-    margin-bottom: 0.5rem;
-}
-
-/* Rótulos dos campos */
+/* Rótulos */
 .emoji-label {
     font-size: 1.2rem;
     margin-right: 0.25rem;
-}
-
-/* Acessibilidade */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-    }
 }
